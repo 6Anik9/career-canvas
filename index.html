@@ -4,97 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CareerCanvas | Created by 6ANIK9</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <style>
-        :root { 
-            --bg: #FDFCFB; 
-            --charcoal: #1A1A1A; 
-            --accent: #C5A059; 
-            --border: #EAEAEA;
-            --muted: #757575;
-        }
-        * { box-sizing: border-box; font-family: 'Inter', sans-serif; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
-        body { background: var(--bg); color: var(--charcoal); margin: 0; padding: 0; overflow-x: hidden; }
-
-        /* --- LANDING SCREEN --- */
-        #welcomeScreen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: #0D0D0D; color: var(--bg);
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            z-index: 2000; text-align: center; padding: 20px;
-        }
-        .hero-title { font-family: 'Georgia', serif; font-size: 48px; letter-spacing: -1.5px; margin: 0; font-weight: 400; }
-        .hero-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 6px; color: var(--accent); margin-top: 15px; font-weight: 700; }
-        
-        .start-btn { 
-            margin-top: 60px; padding: 18px 50px; border: 1px solid var(--accent); 
-            background: transparent; color: var(--bg); cursor: pointer;
-            font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px;
-            border-radius: 2px;
-        }
-        .start-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
-
-        .welcome-footer { position: absolute; bottom: 40px; text-align: center; width: 100%; }
-        .dev-by { font-size: 10px; text-transform: uppercase; letter-spacing: 4px; color: #444; margin-bottom: 20px; }
-        .welcome-socials a { color: var(--bg); font-size: 24px; margin: 0 20px; text-decoration: none; opacity: 0.6; }
-        .welcome-socials a:hover { color: var(--accent); opacity: 1; transform: translateY(-5px); }
-
-        /* --- APP INTERFACE --- */
-        .nav { display: flex; justify-content: center; gap: 40px; padding: 20px 0; background: rgba(253, 252, 251, 0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
-        .nav-item { font-size: 11px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; color: var(--muted); position: relative; padding-bottom: 5px; }
-        .nav-item.active { color: var(--charcoal); }
-        .nav-item.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--charcoal); }
-
-        .container { width: 100%; max-width: 700px; margin: 0 auto; padding: 30px 20px 150px 20px; }
-        .hidden { display: none !important; }
-
-        .field-group { margin-bottom: 25px; }
-        label { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); display: block; margin-bottom: 8px; }
-        input, textarea { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 0; font-size: 15px; outline: none; background: #fff; border-left: 3px solid transparent; }
-        input:focus, textarea:focus { border-left: 3px solid var(--accent); border-color: #ccc; }
-
-        /* --- CV PREVIEW --- */
-        .cv-inner { padding: 50px 40px; border: 1px solid #ddd; background: #fff; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
-        .cv-header { text-align: center; margin-bottom: 30px; }
-        .cv-photo { width: 120px; height: 120px; border: 1px solid #eee; object-fit: cover; margin-bottom: 20px; padding: 5px; background: white; border-radius: 50%; }
-        .contact-bar { display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 11px; color: var(--muted); margin: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 12px 0; }
-
-        .section-h { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
-        .content { font-size: 13px; color: #444; white-space: pre-line; margin-bottom: 25px; line-height: 1.6; }
-
-        .skill-container { margin-bottom: 15px; }
-        .skill-info { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
-        .progress-bg { width: 100%; height: 4px; background: #f0f0f0; border-radius: 2px; }
-        .progress-fill { height: 100%; background: var(--charcoal); width: 0%; border-radius: 2px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-
-        .cv-bottom { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .sig-wrapper { text-align: center; width: 160px; border-top: 1px solid var(--charcoal); padding-top: 8px; }
-
-        /* --- THE FOOTER FIX --- */
-        .cv-footer { margin-top: 60px; text-align: center; border-top: 1px solid var(--border); padding-top: 30px; }
-        .socials a { color: var(--charcoal); font-size: 22px; margin: 0 15px; text-decoration: none; transition: 0.3s; }
-        .socials a:hover { color: var(--accent); }
-
-        .controls { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1100; }
-        .btn-round { background: var(--charcoal); color: var(--bg); width: 55px; height: 55px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-        .btn-round:hover { transform: scale(1.1); background: var(--accent); }
-
-        /* CRITICAL: HIDES FOOTER AND NAV WHEN PRINTING */
-        @media print { 
-            #welcomeScreen, .nav, .controls, .form-view, .cv-footer { display: none !important; } 
-            .cv-inner { border: none !important; box-shadow: none !important; }
-            body { background: white; }
-            .container { padding: 0; margin: 0; max-width: 100%; }
-        }
-        
-        @media (max-width: 600px) {
-            .cv-inner { padding: 30px 20px; }
-            .hero-title { font-size: 32px; }
-            .contact-bar { flex-direction: column; gap: 5px; }
-        }
-    </style>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -190,83 +105,6 @@
     </div>
 </div>
 
-<script>
-    function enterApp() {
-        const welcome = document.getElementById('welcomeScreen');
-        welcome.style.opacity = '0';
-        welcome.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-            welcome.style.display = 'none';
-            document.getElementById('mainApp').classList.remove('hidden');
-        }, 600);
-    }
-
-    window.onload = () => { document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-GB'); };
-
-    function tab(mode) {
-        if(mode === 'view') {
-            document.getElementById('editArea').classList.add('hidden');
-            document.getElementById('viewArea').classList.remove('hidden');
-            document.getElementById('btnView').classList.add('active');
-            document.getElementById('btnEdit').classList.remove('active');
-            setTimeout(() => { 
-                document.querySelectorAll('.progress-fill').forEach(bar => {
-                    bar.style.width = bar.getAttribute('data-percent') + "%";
-                });
-            }, 300);
-        } else {
-            document.getElementById('editArea').classList.remove('hidden');
-            document.getElementById('viewArea').classList.add('hidden');
-            document.getElementById('btnEdit').classList.add('active');
-            document.getElementById('btnView').classList.remove('active');
-        }
-    }
-
-    function sync() {
-        document.getElementById('oName').innerText = document.getElementById('iName').value.toUpperCase() || "YOUR NAME";
-        document.getElementById('oTitle').innerText = document.getElementById('iTitle').value || "PROFESSIONAL TITLE";
-        document.getElementById('oPhone').innerText = document.getElementById('iPhone').value;
-        document.getElementById('oEmail').innerText = document.getElementById('iEmail').value;
-        document.getElementById('oAddr').innerText = document.getElementById('iAddr').value;
-        document.getElementById('oEdu').innerText = document.getElementById('iEdu').value;
-        document.getElementById('oExp').innerText = document.getElementById('iExp').value;
-        document.getElementById('oRef').innerText = document.getElementById('iRef').value;
-        
-        const skillStr = document.getElementById('iSkills').value;
-        const container = document.getElementById('skillBars');
-        container.innerHTML = "";
-        if(skillStr) {
-            skillStr.split(',').forEach(item => {
-                const p = item.split(':');
-                if(p.length === 2) {
-                    container.innerHTML += `<div class="skill-container"><div class="skill-info"><span>${p[0].trim()}</span><span>${p[1].trim()}%</span></div><div class="progress-bg"><div class="progress-fill" data-percent="${p[1].trim()}"></div></div></div>`;
-                }
-            });
-        }
-    }
-
-    function updateImg(e) { if(e.target.files[0]) document.getElementById('oImg').src = URL.createObjectURL(e.target.files[0]); }
-
-    // DOWNLOAD AS IMAGE FIX (Hides footer before capture)
-    function downloadImage() {
-        if(document.getElementById('viewArea').classList.contains('hidden')) tab('view');
-        
-        // Temporarily hide footer for image capture
-        const footer = document.querySelector('.cv-footer');
-        footer.style.display = 'none';
-
-        setTimeout(() => {
-            html2canvas(document.getElementById('captureArea'), { scale: 3, useCORS: true }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = '6ANIK9_CareerCanvas_CV.png';
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-                
-                // Show footer again after capture
-                footer.style.display = 'block';
-            });
-        }, 800);
-    }
-</script>
+<script src="script.js"></script>
 </body>
-    </html>
+            </html>
