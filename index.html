@@ -4,89 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CareerCanvas | Created by 6ANIK9</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root { 
             --bg: #FDFCFB; 
-            --charcoal: #2D2926; 
+            --charcoal: #1A1A1A; 
             --accent: #C5A059; 
-            --border: #E5E5E5;
-            --muted: #8C8C8C;
+            --border: #EAEAEA;
+            --muted: #757575;
         }
-        * { box-sizing: border-box; font-family: 'Inter', sans-serif; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        * { box-sizing: border-box; font-family: 'Inter', sans-serif; transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
         body { background: var(--bg); color: var(--charcoal); margin: 0; padding: 0; overflow-x: hidden; }
 
         /* --- LANDING SCREEN --- */
         #welcomeScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-            background: var(--charcoal); color: var(--bg);
+            background: #0D0D0D; color: var(--bg);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 2000; text-align: center; padding: 20px;
         }
-        .hero-title { font-family: 'Georgia', serif; font-size: 42px; letter-spacing: -1px; margin: 0; }
-        .hero-sub { font-size: 10px; text-transform: uppercase; letter-spacing: 5px; color: var(--accent); margin-top: 10px; }
+        .hero-title { font-family: 'Georgia', serif; font-size: 48px; letter-spacing: -1.5px; margin: 0; font-weight: 400; }
+        .hero-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 6px; color: var(--accent); margin-top: 15px; font-weight: 700; }
         
         .start-btn { 
-            margin-top: 50px; padding: 16px 45px; border: 1px solid var(--accent); 
+            margin-top: 60px; padding: 18px 50px; border: 1px solid var(--accent); 
             background: transparent; color: var(--bg); cursor: pointer;
-            font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px;
+            font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px;
+            border-radius: 2px;
         }
-        .start-btn:hover { background: var(--accent); color: var(--charcoal); box-shadow: 0 0 20px rgba(197, 160, 89, 0.3); }
+        .start-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
 
         .welcome-footer { position: absolute; bottom: 40px; text-align: center; width: 100%; }
-        .dev-by { font-size: 9px; text-transform: uppercase; letter-spacing: 3px; color: var(--muted); margin-bottom: 15px; }
-        .welcome-socials a { color: var(--bg); font-size: 22px; margin: 0 18px; text-decoration: none; opacity: 0.7; }
-        .welcome-socials a:hover { color: var(--accent); opacity: 1; transform: translateY(-3px); }
+        .dev-by { font-size: 10px; text-transform: uppercase; letter-spacing: 4px; color: #444; margin-bottom: 20px; }
+        .welcome-socials a { color: var(--bg); font-size: 24px; margin: 0 20px; text-decoration: none; opacity: 0.6; }
+        .welcome-socials a:hover { color: var(--accent); opacity: 1; transform: translateY(-5px); }
 
         /* --- APP INTERFACE --- */
-        .nav { display: flex; justify-content: center; gap: 30px; padding: 15px 0; background: rgba(253, 252, 251, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
-        .nav-item { font-size: 10px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; color: var(--muted); border-bottom: 2px solid transparent; }
-        .nav-item.active { color: var(--charcoal); border-bottom-color: var(--charcoal); }
+        .nav { display: flex; justify-content: center; gap: 40px; padding: 20px 0; background: rgba(253, 252, 251, 0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+        .nav-item { font-size: 11px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; color: var(--muted); position: relative; padding-bottom: 5px; }
+        .nav-item.active { color: var(--charcoal); }
+        .nav-item.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--charcoal); }
 
-        .container { width: 100%; max-width: 600px; margin: 0 auto; padding: 20px 15px 120px 15px; }
+        .container { width: 100%; max-width: 700px; margin: 0 auto; padding: 30px 20px 150px 20px; }
         .hidden { display: none !important; }
 
-        .field-group { margin-bottom: 20px; }
-        label { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); display: block; margin-bottom: 6px; }
-        input, textarea { width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 14px; outline: none; background: #fff; }
+        .field-group { margin-bottom: 25px; }
+        label { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); display: block; margin-bottom: 8px; }
+        input, textarea { width: 100%; padding: 14px; border: 1px solid var(--border); border-radius: 0; font-size: 15px; outline: none; background: #fff; border-left: 3px solid transparent; }
+        input:focus, textarea:focus { border-left: 3px solid var(--accent); border-color: #ccc; }
 
         /* --- CV PREVIEW --- */
-        .cv-inner { padding: 40px 25px; border: 1px solid var(--border); background: var(--bg); position: relative; }
-        .cv-header { text-align: center; margin-bottom: 25px; }
-        .cv-photo { width: 110px; height: 110px; border: 1px solid var(--charcoal); object-fit: cover; margin-bottom: 15px; padding: 4px; background: white; }
-        .contact-bar { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 10px; color: var(--muted); margin: 15px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 10px 0; }
+        .cv-inner { padding: 50px 40px; border: 1px solid #ddd; background: #fff; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+        .cv-header { text-align: center; margin-bottom: 30px; }
+        .cv-photo { width: 120px; height: 120px; border: 1px solid #eee; object-fit: cover; margin-bottom: 20px; padding: 5px; background: white; border-radius: 50%; }
+        .contact-bar { display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 15px; font-size: 11px; color: var(--muted); margin: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 12px 0; }
 
-        .section-h { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 4px; }
-        .content { font-size: 12.5px; color: #333; white-space: pre-line; margin-bottom: 20px; }
+        .section-h { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+        .content { font-size: 13px; color: #444; white-space: pre-line; margin-bottom: 25px; line-height: 1.6; }
 
-        .skill-container { margin-bottom: 12px; }
-        .skill-info { display: flex; justify-content: space-between; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
-        .progress-bg { width: 100%; height: 6px; background: #e8e8e8; border-radius: 10px; }
-        .progress-fill { height: 100%; background: var(--charcoal); width: 0%; border-radius: 10px; }
+        .skill-container { margin-bottom: 15px; }
+        .skill-info { display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+        .progress-bg { width: 100%; height: 4px; background: #f0f0f0; border-radius: 2px; }
+        .progress-fill { height: 100%; background: var(--charcoal); width: 0%; border-radius: 2px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
 
-        .cv-bottom { margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .sig-wrapper { text-align: center; width: 140px; border-top: 1px solid var(--charcoal); padding-top: 5px; }
+        .cv-bottom { margin-top: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .sig-wrapper { text-align: center; width: 160px; border-top: 1px solid var(--charcoal); padding-top: 8px; }
 
-        .cv-footer { margin-top: 50px; text-align: center; border-top: 1px solid var(--border); padding-top: 25px; }
-        .socials a { color: var(--charcoal); font-size: 20px; margin: 0 15px; text-decoration: none; }
+        /* --- THE FOOTER FIX --- */
+        .cv-footer { margin-top: 60px; text-align: center; border-top: 1px solid var(--border); padding-top: 30px; }
+        .socials a { color: var(--charcoal); font-size: 22px; margin: 0 15px; text-decoration: none; transition: 0.3s; }
+        .socials a:hover { color: var(--accent); }
 
-        .controls { position: fixed; bottom: 25px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 1100; }
-        .btn-round { background: var(--charcoal); color: var(--bg); width: 50px; height: 50px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .controls { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 1100; }
+        .btn-round { background: var(--charcoal); color: var(--bg); width: 55px; height: 55px; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .btn-round:hover { transform: scale(1.1); background: var(--accent); }
 
-        @media print { #welcomeScreen, .nav, .controls, .form-view { display: none !important; } }
+        /* CRITICAL: HIDES FOOTER AND NAV WHEN PRINTING */
+        @media print { 
+            #welcomeScreen, .nav, .controls, .form-view, .cv-footer { display: none !important; } 
+            .cv-inner { border: none !important; box-shadow: none !important; }
+            body { background: white; }
+            .container { padding: 0; margin: 0; max-width: 100%; }
+        }
+        
+        @media (max-width: 600px) {
+            .cv-inner { padding: 30px 20px; }
+            .hero-title { font-size: 32px; }
+            .contact-bar { flex-direction: column; gap: 5px; }
+        }
     </style>
 </head>
 <body>
 
 <div id="welcomeScreen">
     <h1 class="hero-title">Career <span style="font-weight:100; font-style:italic;">Canvas</span></h1>
-    <p class="hero-sub">Minimalist CV Generator</p>
+    <p class="hero-sub">The Art of Professionalism</p>
     
-    <button class="start-btn" onclick="enterApp()">Get Started</button>
+    <button class="start-btn" onclick="enterApp()">Initialize</button>
 
     <div class="welcome-footer">
-        <div class="dev-by">Credit Goes To</div>
+        <div class="dev-by">Design & Engine by</div>
         <div class="welcome-socials">
             <a href="https://github.com/6ANIK9" target="_blank"><i class="fab fa-github"></i></a>
             <a href="https://www.instagram.com/6mdaniksheikh9" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -96,39 +115,39 @@
 
 <div id="mainApp" class="hidden">
     <div class="nav">
-        <div class="nav-item active" id="btnEdit" onclick="tab('edit')">1. Compose</div>
-        <div class="nav-item" id="btnView" onclick="tab('view')">2. Preview</div>
+        <div class="nav-item active" id="btnEdit" onclick="tab('edit')">01. Compose</div>
+        <div class="nav-item" id="btnView" onclick="tab('view')">02. Preview</div>
     </div>
 
     <div class="container">
         <div id="editArea" class="form-view">
             <div class="field-group">
-                <label>Profile Image</label>
+                <label>Portrait Upload</label>
                 <input type="file" accept="image/*" onchange="updateImg(event)">
             </div>
             <div class="field-group">
-                <label>Personal Info</label>
-                <input type="text" id="iName" placeholder="Full Name" oninput="sync()">
-                <input type="text" id="iTitle" placeholder="Professional Title" oninput="sync()" style="margin-top:8px">
+                <label>Executive Summary</label>
+                <input type="text" id="iName" placeholder="Legal Full Name" oninput="sync()">
+                <input type="text" id="iTitle" placeholder="Current Designation / Role" oninput="sync()" style="margin-top:10px">
             </div>
             <div class="field-group">
-                <label>Contact</label>
-                <input type="text" id="iPhone" placeholder="Phone" oninput="sync()">
-                <input type="email" id="iEmail" placeholder="Email" oninput="sync()" style="margin-top:8px">
-                <input type="text" id="iAddr" placeholder="Location" oninput="sync()" style="margin-top:8px">
+                <label>Contact Channels</label>
+                <input type="text" id="iPhone" placeholder="Mobile Number" oninput="sync()">
+                <input type="email" id="iEmail" placeholder="Official Email Address" oninput="sync()" style="margin-top:10px">
+                <input type="text" id="iAddr" placeholder="Primary Location (City, Country)" oninput="sync()" style="margin-top:10px">
             </div>
             <div class="field-group">
-                <label>Career & Education</label>
-                <textarea id="iEdu" rows="3" placeholder="Education background..." oninput="sync()"></textarea>
-                <textarea id="iExp" rows="3" placeholder="Work history..." oninput="sync()" style="margin-top:8px"></textarea>
+                <label>Professional Path</label>
+                <textarea id="iEdu" rows="4" placeholder="Academic History & Credentials..." oninput="sync()"></textarea>
+                <textarea id="iExp" rows="4" placeholder="Professional Experience & Key Achievements..." oninput="sync()" style="margin-top:10px"></textarea>
             </div>
             <div class="field-group">
-                <label>Skills (Format: HTML:90, Management:80)</label>
-                <input type="text" id="iSkills" placeholder="Skill:Percentage" oninput="sync()">
+                <label>Technical Proficiencies (Format: HTML:90, Leadership:100)</label>
+                <input type="text" id="iSkills" placeholder="Skill:Strength" oninput="sync()">
             </div>
             <div class="field-group">
-                <label>Verification</label>
-                <textarea id="iRef" rows="2" placeholder="References..." oninput="sync()"></textarea>
+                <label>Attestation</label>
+                <textarea id="iRef" rows="2" placeholder="References Available Upon Request..." oninput="sync()"></textarea>
             </div>
         </div>
 
@@ -136,30 +155,30 @@
             <div id="captureArea" class="cv-inner">
                 <div class="cv-header">
                     <img id="oImg" class="cv-photo" src="https://via.placeholder.com/150">
-                    <h1 id="oName" style="font-family: Georgia, serif; font-size: 26px; margin: 0;">NAME</h1>
-                    <div id="oTitle" style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-top: 5px;">DESIGNATION</div>
+                    <h1 id="oName" style="font-family: Georgia, serif; font-size: 28px; margin: 0; letter-spacing: -1px;">NAME</h1>
+                    <div id="oTitle" style="font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--muted); margin-top: 8px;">DESIGNATION</div>
                     <div class="contact-bar">
-                        <span id="oPhone"></span> <span id="oEmail"></span> <span id="oAddr"></span>
+                        <span id="oPhone"></span> • <span id="oEmail"></span> • <span id="oAddr"></span>
                     </div>
                 </div>
 
-                <div class="section"><div class="section-h">Academic</div><div class="content" id="oEdu"></div></div>
-                <div class="section"><div class="section-h">Experience</div><div class="content" id="oExp"></div></div>
-                <div class="section"><div class="section-h">Skills</div><div id="skillBars"></div></div>
-                <div class="section"><div class="section-h">References</div><div class="content" id="oRef"></div></div>
+                <div class="section"><div class="section-h">Academic Credentials</div><div class="content" id="oEdu"></div></div>
+                <div class="section"><div class="section-h">Professional Tenure</div><div class="content" id="oExp"></div></div>
+                <div class="section"><div class="section-h">Core Proficiencies</div><div id="skillBars"></div></div>
+                <div class="section"><div class="section-h">Reference Attestation</div><div class="content" id="oRef"></div></div>
 
                 <div class="cv-bottom">
-                    <div style="font-size: 10px; color: var(--muted);">Date: <span id="currentDate"></span></div>
-                    <div class="sig-wrapper"><div style="font-size: 9px; font-weight: 800; text-transform: uppercase; color: var(--muted);">Authorized Signature</div></div>
+                    <div style="font-size: 11px; color: var(--muted); font-weight: 700;">Issue Date: <span id="currentDate"></span></div>
+                    <div class="sig-wrapper"><div style="font-size: 10px; font-weight: 900; text-transform: uppercase; color: var(--charcoal);">Authorized Signature</div></div>
                 </div>
 
                 <div class="cv-footer">
-                    <div style="font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: var(--muted);">System Developed by</div>
+                    <div style="font-size: 10px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; color: var(--muted); font-weight: 800;">System Architect</div>
                     <div class="socials">
                         <a href="https://www.instagram.com/6mdaniksheikh9" target="_blank"><i class="fab fa-instagram"></i></a>
                         <a href="https://github.com/6ANIK9" target="_blank"><i class="fab fa-github"></i></a>
                     </div>
-                    <div style="font-size: 7px; color: #eee; margin-top: 10px;">CREDIT: 6ANIK9</div>
+                    <div style="font-size: 8px; color: #f0f0f0; margin-top: 15px; letter-spacing: 5px;">6ANIK9 • CAREER CANVAS</div>
                 </div>
             </div>
         </div>
@@ -172,15 +191,14 @@
 </div>
 
 <script>
-    console.log("%c CareerCanvas %c Developed by 6ANIK9 ", "color:white; background:#2D2926; padding:5px;", "color:white; background:#C5A059; padding:5px;");
-
     function enterApp() {
         const welcome = document.getElementById('welcomeScreen');
         welcome.style.opacity = '0';
+        welcome.style.transform = 'scale(1.1)';
         setTimeout(() => {
             welcome.style.display = 'none';
             document.getElementById('mainApp').classList.remove('hidden');
-        }, 500);
+        }, 600);
     }
 
     window.onload = () => { document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-GB'); };
@@ -195,7 +213,7 @@
                 document.querySelectorAll('.progress-fill').forEach(bar => {
                     bar.style.width = bar.getAttribute('data-percent') + "%";
                 });
-            }, 200);
+            }, 300);
         } else {
             document.getElementById('editArea').classList.remove('hidden');
             document.getElementById('viewArea').classList.add('hidden');
@@ -205,8 +223,8 @@
     }
 
     function sync() {
-        document.getElementById('oName').innerText = document.getElementById('iName').value.toUpperCase() || "NAME";
-        document.getElementById('oTitle').innerText = document.getElementById('iTitle').value || "DESIGNATION";
+        document.getElementById('oName').innerText = document.getElementById('iName').value.toUpperCase() || "YOUR NAME";
+        document.getElementById('oTitle').innerText = document.getElementById('iTitle').value || "PROFESSIONAL TITLE";
         document.getElementById('oPhone').innerText = document.getElementById('iPhone').value;
         document.getElementById('oEmail').innerText = document.getElementById('iEmail').value;
         document.getElementById('oAddr').innerText = document.getElementById('iAddr').value;
@@ -229,16 +247,25 @@
 
     function updateImg(e) { if(e.target.files[0]) document.getElementById('oImg').src = URL.createObjectURL(e.target.files[0]); }
 
+    // DOWNLOAD AS IMAGE FIX (Hides footer before capture)
     function downloadImage() {
         if(document.getElementById('viewArea').classList.contains('hidden')) tab('view');
+        
+        // Temporarily hide footer for image capture
+        const footer = document.querySelector('.cv-footer');
+        footer.style.display = 'none';
+
         setTimeout(() => {
-            html2canvas(document.getElementById('captureArea'), { scale: 2 }).then(canvas => {
+            html2canvas(document.getElementById('captureArea'), { scale: 3, useCORS: true }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = 'XNZY_Professional_CV_6ANIK9.png';
-                link.href = canvas.toDataURL();
+                link.download = '6ANIK9_CareerCanvas_CV.png';
+                link.href = canvas.toDataURL("image/png");
                 link.click();
+                
+                // Show footer again after capture
+                footer.style.display = 'block';
             });
-        }, 600);
+        }, 800);
     }
 </script>
 </body>
